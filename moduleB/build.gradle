@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id 'org.cyclonedx.bom'
+}
+
+dependencies {
+    implementation "commons-beanutils:commons-beanutils:1.9.4"
+    implementation "net.sf.jasperreports:jasperreports:6.20.0"
+
+    constraints {
+        runtimeOnly('com.lowagie:itext:2.1.7') {
+            because 'https://github.com/TIBCOSoftware/jasperreports/issues/148'
+        }
+    }
+}
+
+cyclonedxBom.configure {
+    includeConfigs = ['runtimeClasspath', 'testRuntimeClasspath']
+    projectType = 'application'
+}
